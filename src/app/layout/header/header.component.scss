@@ -1,0 +1,14 @@
+header{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    .nav-container{
+       display: flex;
+    gap:10px;
+    nav{
+ display: flex;
+ gap:10px
+    }
+    }
+}
