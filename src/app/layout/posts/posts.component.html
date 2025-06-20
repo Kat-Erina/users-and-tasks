@@ -1,1 +1,24 @@
-<p>posts works!</p>
+<h1>პოსტების სია</h1>
+
+<div class="table-wrapper">
+  <table  cellspacing="0" cellpadding="8">
+  <thead>
+    <tr>
+      <th>მომხმარებლის სახელი</th>
+      <th>პოსტის სათაური</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   @for (post of postsArrayWithUserName(); track post.id) {
+      <tr>
+        <td>{{ post.username }}</td>
+        <td>{{ post.title}}</td>
+        <td><button>დეტალურად</button></td>
+        <!-- <td><button (click)="goToUserPosts(user.id)">პოსტები</button></td> -->
+      </tr>
+    }
+  </tbody>
+</table>
+</div>
+

@@ -1,6 +1,11 @@
 <h1>მომხმარებლების სია</h1>
+<div class="filter-wrapper">
+  <label for="filter">მომხმარებლის ძიება</label>
+  <input id="filter" (input)="applyFilteres($event)" type="text" placeholder="სახელი ან გვარი" />
+</div>
 
-<table border="1"  cellspacing="0" cellpadding="8">
+<div class="table-wrapper">
+  <table  cellspacing="0" cellpadding="8">
   <thead>
     <tr>
       <th>სახელი</th>
@@ -19,8 +24,9 @@
         <td>{{user.phone}}</td>
         <td>{{user.email}}</td>
         <td>{{user.company.name}}</td>
-        <td><button>პოსტები</button></td>
+        <td><button (click)="goToUserPosts(user.id)">პოსტები</button></td>
       </tr>
     }
   </tbody>
 </table>
+</div>
