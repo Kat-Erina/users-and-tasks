@@ -1,1 +1,26 @@
-<p>users works!</p>
+<h1>მომხმარებლების სია</h1>
+
+<table border="1"  cellspacing="0" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Lastame</th>
+      <th>Tel#</th>
+      <th>Email</th>
+      <th>Company Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+   @for (user of usersData(); track user.id) {
+      <tr>
+        <td>{{ user.name.split(' ')[0] }}</td>
+        <td>{{ user.name.split(' ')[1] }}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.company.name}}</td>
+        <td>Posts</td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -9,6 +9,8 @@ import { User } from '../../core/models/models';
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
+displayedColumns: string[] = ['name','lastname', 'tel', 'email', 'company','action'];
+
 apiService=inject(ApiService);
 usersData=signal<User[]>([])
 
@@ -16,6 +18,7 @@ loadUsersData(){
   this.apiService.getData<User[]>('users').subscribe({
     next:(respone)=>{
       console.log(respone)
+      this.usersData.set(respone)
     }, 
     error: (error)=>console.log(error)
   
