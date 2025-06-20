@@ -10,5 +10,9 @@ export const routes: Routes = [
        { path: 'posts', 
         loadComponent:()=>import('./layout/posts/posts.component').then((com)=>com.PostsComponent)
      },
+     {
+      path:'user-posts', 
+      loadComponent:()=>import('./layout/user-posts/user-posts.component').then((com)=>com.UserPostsComponent)
+     }
 
 ];
