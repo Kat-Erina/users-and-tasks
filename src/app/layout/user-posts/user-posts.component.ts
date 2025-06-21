@@ -3,10 +3,11 @@ import { StateService } from '../../core/services/state.service';
 import { Post } from '../../core/models/models';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../core/services/api.service';
+import { PostCardComponent } from './post-card/post-card.component';
 
 @Component({
   selector: 'app-user-posts',
-  imports: [],
+  imports: [PostCardComponent],
   templateUrl: './user-posts.component.html',
   styleUrl: './user-posts.component.scss'
 })
@@ -14,7 +15,7 @@ export class UserPostsComponent implements OnInit{
 stateService=inject(StateService);
 apiService=inject(ApiService);
 posts=signal<Post[]>([])
-userPostsArray=signal<Post[]>([]);
+userPostsArray=this.stateService.userPostsArray;
 
 loadUserPosts(){
   this.apiService.getData<Post[]>('posts').subscribe({

@@ -1,5 +1,7 @@
 <h1>პოსტების სია</h1>
-
+@if (stateService.popUpIsOpen()) {
+  <app-popup [postData]="stateService.selectedPost()"/>
+}
 <div class="table-wrapper">
   <table  cellspacing="0" cellpadding="8">
   <thead>
@@ -14,8 +16,7 @@
       <tr>
         <td>{{ post.username }}</td>
         <td>{{ post.title}}</td>
-        <td><button>დეტალურად</button></td>
-        <!-- <td><button (click)="goToUserPosts(user.id)">პოსტები</button></td> -->
+        <td><button (click)="displayFullInfo(post.id)">დეტალურად</button></td>
       </tr>
     }
   </tbody>

@@ -1,0 +1,6 @@
+<h4>ToDo List</h4>
+@if(userTodossArray().length!==0){
+    @for(todo of userTodossArray(); track todo.id){
+<app-todo-card [data]="todo"/>
+    }
+}

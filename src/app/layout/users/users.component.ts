@@ -44,6 +44,11 @@ goToUserPosts(userId:number){
 }
 
 
+goToUserTodos(userId:number){
+  // this.stateService.userId.set(userId);
+  localStorage.setItem('userId', JSON.stringify(userId) )
+  this.router.navigate(['/user-todos'])
+}
 
 
 applyFilteres(event:Event){

@@ -1,1 +1,9 @@
-<p>user-posts works!</p>
+<h4>პოსტები</h4>
+@if(userPostsArray().length!==0){
+    @for(post of userPostsArray(); track post.id){
+   <app-post-card [postData]="post"></app-post-card>
+}
+}
+@else {
+    <p>ამ მომხმარებლის პოსტები ვერ მოიძებნა</p>
+}

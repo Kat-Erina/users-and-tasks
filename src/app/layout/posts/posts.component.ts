@@ -3,10 +3,11 @@ import { ApiService } from '../../core/services/api.service';
 import { Post, User } from '../../core/models/models';
 import { StateService } from '../../core/services/state.service';
 import { forkJoin } from 'rxjs';
+import { PopupComponent } from './popup/popup.component';
 
 @Component({
   selector: 'app-posts',
-  imports: [],
+  imports: [PopupComponent],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss'
 })
@@ -42,6 +43,17 @@ this.apiService.getData<Post[]>('posts').subscribe({
   error:error=>console.log(error)
 })
 }
+
+displayFullInfo(id:number){
+  this.stateService.popUpIsOpen.set(true);
+  console.log(id)
+  let selectedPost=this.postsData().filter((post)=>{
+    return post.id===id
+  })
+  this.stateService.selectedPost.set(selectedPost[0]);
+  console.log(this.stateService.selectedPost())
+}
+
 
 ngOnInit(): void {
   this.loadData();
