@@ -46,12 +46,10 @@ this.apiService.getData<Post[]>('posts').subscribe({
 
 displayFullInfo(id:number){
   this.stateService.popUpIsOpen.set(true);
-  console.log(id)
   let selectedPost=this.postsData().filter((post)=>{
     return post.id===id
   })
   this.stateService.selectedPost.set(selectedPost[0]);
-  console.log(this.stateService.selectedPost())
 }
 
 

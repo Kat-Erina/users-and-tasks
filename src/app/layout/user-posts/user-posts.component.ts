@@ -23,17 +23,12 @@ loadUserPosts(){
     this.posts.set(response);
      let fetchedData=localStorage.getItem('userId');
   if(fetchedData){
-    console.log(fetchedData)
 const updatedData=this.posts().filter(post=>{return post.userId===Number(fetchedData)});
 this.userPostsArray.set(updatedData);
-console.log(this.userPostsArray())
-
   }
-    
     }
   })
 }
-
 
 
 ngOnInit(): void {

@@ -1,14 +1,62 @@
+h1{font-size: 23px;
+margin-bottom: 5px}
+.filter-wrapper{
+display: flex;
+flex-direction: column;
+gap:5px;
+margin-bottom: 10px;
+input{
+  padding: 10px;
+  border-radius: 3px;
+  max-width: 400px;
+}
+}
 .table-wrapper{
      width: 100%;
   overflow-x: auto;
+  border: 1px solid grey;
   table{
      width: 100%;
   min-width: 600px; 
   border-collapse: collapse;
-  th, td {
-  padding: 8px 12px;
-  text-align: left;
+  thead{
+    tr{
+th{
+  font-size: 17px;
 }
+  }}
+  tbody{
+     th, td {
+  padding: 8px 12px;
+ color: gray; 
+}
+.posts button, .todos button{
+  padding: 5px 8px;
+  background-color: rgb(247, 240, 174);
+  border: none;
+  border-radius: 2px;
+  font-size: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+}
+.todos button{
+  width: 70px
+}
+.posts button:hover, .todos button:hover{
+ transform: scale(1.05);         
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3); 
+  z-index: 10;                    
+  cursor: pointer; 
+}
+  }
+
 
   }
+}
+
+@media screen and (min-width:400) {
+header{
+   width: 50%;
+};
+   
 }

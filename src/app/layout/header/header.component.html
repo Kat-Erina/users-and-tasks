@@ -6,5 +6,8 @@
             <a routerLink="/posts">Posts</a>
         </nav>
     </div>
-    <div class="date-container">Date and Time</div>
+    <div class="date-container">
+        <p class="date"><i class="fa-solid fa-calendar-days"></i>{{date()}}</p>
+        <p class="time"><i class="fa-solid fa-clock"></i> {{hour()}}:{{minutes()}}</p>
+    </div>
 </header>

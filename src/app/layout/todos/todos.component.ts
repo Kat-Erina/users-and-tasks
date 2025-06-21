@@ -23,18 +23,12 @@ loadUserTodos(){
     this.toDos.set(response);
      let fetchedData=localStorage.getItem('userId');
   if(fetchedData){
-    console.log(fetchedData)
 const updatedData=this.toDos().filter(todo=>{return todo.userId===Number(fetchedData)});
 this.userTodossArray.set(updatedData);
-console.log(this.userTodossArray())
-
   }
-    
     }
   })
 }
-
-
 
 ngOnInit(): void {
 this.loadUserTodos()

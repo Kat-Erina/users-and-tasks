@@ -22,7 +22,6 @@ originalUsers=signal<User[]>([])
 loadUsersData(){
   this.apiService.getData<User[]>('users').subscribe({
     next:(respone)=>{this.usersData.set(respone);
-      console.log(this.usersData())
       this.originalUsers.set(respone)
     }, 
     error: (error)=>console.log(error)
@@ -34,18 +33,15 @@ loadUsersData(){
 
 ngOnInit(): void {
   this.loadUsersData()
-  // this.stateService.userId.set(null)
 }
 
 goToUserPosts(userId:number){
-  // this.stateService.userId.set(userId);
   localStorage.setItem('userId', JSON.stringify(userId) )
   this.router.navigate(['/user-posts'])
 }
 
 
 goToUserTodos(userId:number){
-  // this.stateService.userId.set(userId);
   localStorage.setItem('userId', JSON.stringify(userId) )
   this.router.navigate(['/user-todos'])
 }
@@ -53,15 +49,11 @@ goToUserTodos(userId:number){
 
 applyFilteres(event:Event){
  const inputValue=(event.target as HTMLInputElement).value.toLowerCase().trim();
- console.log(inputValue)
-
  const filtered = this.originalUsers().filter(user =>
     user.name.toLowerCase().includes(inputValue) ||
     user.email.toLowerCase().includes(inputValue)
   );
-console.log(this.originalUsers())
   this.usersData.set(filtered);
-  console.log(this.usersData())
 }
 
 }

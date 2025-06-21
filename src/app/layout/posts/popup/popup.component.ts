@@ -16,8 +16,5 @@ stateService=inject(StateService)
     this.stateService.popUpIsOpen.set(false)
 }
 
-ngOnInit(){
-  console.log(this.stateService.selectedPost())
-  console.log(this.postData)
-}
+
 }
