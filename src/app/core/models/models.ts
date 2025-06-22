@@ -26,12 +26,20 @@ export interface User{
     userId: number,
     id: number,
     title: string,
-    body: string
+    body: string, 
   }
 
   export interface ToDo{
-     userId: number,
+    userId: number,
     id: number,
     title: string,
-    completed: boolean
+    completed: boolean, 
+  }
+
+  export interface CardData {
+ userId: number,
+    id: number,
+    title: string,
+    completed?: boolean, 
+     body?: string, 
   }

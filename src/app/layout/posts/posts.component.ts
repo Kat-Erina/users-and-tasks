@@ -14,14 +14,12 @@ import { PopupComponent } from './popup/popup.component';
 export class PostsComponent implements OnInit{
 apiService=inject(ApiService);
 stateService=inject(StateService)
-postsData=this.stateService.postsData
-usersData=this.stateService.usersData
+postsData=signal<Post[]>([])
+usersData=signal<User[]>([])
 postsArrayWithUserName=signal<{ title: string; username: string, id:number }[] >([]) ;
 
 loadData(){
-this.apiService.getData<Post[]>('posts').subscribe({
-  next:()=>{
-      forkJoin({
+  forkJoin({
     posts: this.apiService.getData<Post[]>('posts'),
     users: this.apiService.getData<User[]>('users')
   }).subscribe({
@@ -37,11 +35,9 @@ this.apiService.getData<Post[]>('posts').subscribe({
         };
       });
       this.postsArrayWithUserName.set(updatedData)
-    }
+    }, 
+    error:error=>console.log(error)
   });
-  },
-  error:error=>console.log(error)
-})
 }
 
 displayFullInfo(id:number){
@@ -51,7 +47,6 @@ displayFullInfo(id:number){
   })
   this.stateService.selectedPost.set(selectedPost[0]);
 }
-
 
 ngOnInit(): void {
   this.loadData();

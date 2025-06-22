@@ -1,9 +1,18 @@
-<h4>პოსტები</h4>
-@if(userPostsArray().length!==0){
+<h3>პოსტები</h3>
+<div class="cards-wrapper">
+    @if(userPostsArray().length!==0){
     @for(post of userPostsArray(); track post.id){
-   <app-post-card [postData]="post"></app-post-card>
-}
+   <!-- <app-post-card [data]="post"></app-post-card> -->
+    <app-card [data]="post"></app-card>
+}}
+@else if (userPostsArray().length===0 && !errorMes()) {
+    <p>
+        User does not have any Posts
+    </p>
 }
 @else {
-    <p>ამ მომხმარებლის პოსტები ვერ მოიძებნა</p>
+    <p>Could not fetch Data</p>
 }
+</div>
+
+

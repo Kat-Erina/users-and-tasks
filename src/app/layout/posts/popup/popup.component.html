@@ -1,9 +1,7 @@
-<!-- popup.component.html -->
-<div class="overlay">
-  <div class="popup-window">
+<div class="overlay" (click)="close()">
+  <div class="popup-window" (click)="$event.stopPropagation()">
     <button class="close-btn" (click)="close()">×</button>
     <h2>{{postData?.title}}</h2>
     <p>{{postData?.body}}</p>
-    <!-- Add your content here -->
   </div>
 </div>

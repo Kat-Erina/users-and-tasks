@@ -1,18 +1,18 @@
-/* popup.component.css */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(2px); 
+  -webkit-backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
 
-.popup-window {
+  .popup-window {
   background: white;
   padding: 2rem;
   border-radius: 12px;
@@ -21,17 +21,28 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   position: relative;
   animation: fadeIn 0.3s ease-out;
-}
 
-.close-btn {
+  .close-btn {
   position: absolute;
   top: 12px;
   right: 12px;
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
+};
+
+h2{
+  margin-bottom: 10px;
+  font-style: italic;
 }
+}
+
+  
+}
+
+
+
 
 @keyframes fadeIn {
   from {

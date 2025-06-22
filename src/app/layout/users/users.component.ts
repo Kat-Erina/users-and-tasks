@@ -1,7 +1,6 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { User } from '../../core/models/models';
-import { StateService } from '../../core/services/state.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,39 +12,34 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit {
 
 apiService=inject(ApiService);
-stateService=inject(StateService)
 router=inject(Router)
-usersData=this.stateService.usersData;
-originalUsers=signal<User[]>([])
+usersData=signal<User[]>([]);
+originalUsers=signal<User[]>([]);
+destroyRef=inject(DestroyRef);
+errorMsg=signal<string|null>(null)
 
 
 loadUsersData(){
-  this.apiService.getData<User[]>('users').subscribe({
+ let subs=this.apiService.getData<User[]>('users').subscribe({
     next:(respone)=>{this.usersData.set(respone);
       this.originalUsers.set(respone)
     }, 
-    error: (error)=>console.log(error)
+    error: ()=>this.errorMsg.set('Could not fetch Users')
   })
+this.destroyRef.onDestroy(()=>{
+  subs.unsubscribe()
+})
 }
-
-
-
 
 ngOnInit(): void {
   this.loadUsersData()
 }
 
-goToUserPosts(userId:number){
+
+navigateToUsersData(userId:number, route:string){
   localStorage.setItem('userId', JSON.stringify(userId) )
-  this.router.navigate(['/user-posts'])
+  this.router.navigate([route])
 }
-
-
-goToUserTodos(userId:number){
-  localStorage.setItem('userId', JSON.stringify(userId) )
-  this.router.navigate(['/user-todos'])
-}
-
 
 applyFilteres(event:Event){
  const inputValue=(event.target as HTMLInputElement).value.toLowerCase().trim();

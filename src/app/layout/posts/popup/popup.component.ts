@@ -12,9 +12,11 @@ export class PopupComponent {
 stateService=inject(StateService)
 @Input() postData!:Post | null
 
-  close() {
+close() {
     this.stateService.popUpIsOpen.set(false)
 }
+
+
 
 
 }

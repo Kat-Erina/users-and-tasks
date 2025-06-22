@@ -1,5 +1,7 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component,  DestroyRef,  inject,  OnInit, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule } from '@angular/router';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -7,36 +9,37 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-date=signal('')
+export class HeaderComponent implements OnInit {
+day=signal(0)
+month=signal(0)
+year=signal(0)
 hour=signal('')
 minutes=signal('')
-
-private intervalId!: ReturnType<typeof setInterval>;
+destroyRef=inject(DestroyRef)
 
 
 ngOnInit(): void {
 
-const now = new Date();
-this.updateTime()
- this.date.set(now.toLocaleDateString())
-  this.intervalId = setInterval(() => {
-      this.updateTime();
-    }, 60_000); 
+this.updateTime();
+ 
+    interval(60000)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.updateTime());
   }
 
-
    updateTime(): void {
-    const now = new Date();
+const now = new Date();
+this.day.set(now.getDate())
+this.month.set(now.getMonth())
+this.year.set(now.getFullYear())
 this.hour.set(now.getHours().toString().padStart(2, '0'))
 this.minutes.set(now.getMinutes().toString().padStart(2, '0'))
   }
-
-   ngOnDestroy(): void {
-    clearInterval(this.intervalId);
   }
-  
-}
+
+
+
+
 
 
 

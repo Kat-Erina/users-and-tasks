@@ -1,4 +1,8 @@
 <h1>მომხმარებლების სია</h1>
+@if(errorMsg()){
+  <p>{{errorMsg()}}</p>
+}
+@else{
 <div class="filter-wrapper">
   <label for="filter">მომხმარებლის ძიება</label>
   <input id="filter" (input)="applyFilteres($event)" type="text" placeholder="სახელი,გვარი ან მეილი" />
@@ -23,10 +27,10 @@
         <td>{{user.phone}}</td>
         <td>{{user.email}}</td>
         <td>{{user.company.name}}</td>
-        <td class="posts"><button (click)="goToUserPosts(user.id)">პოსტები</button></td>
-        <td class="todos"><button (click)="goToUserTodos(user.id)">To Dos</button></td>
+        <td class="posts"><button (click)="navigateToUsersData(user.id, '/user-posts')">პოსტები</button></td>
+        <td class="todos"><button style="width: 70px;" (click)="navigateToUsersData(user.id, '/user-todos')">To Dos</button></td>
       </tr>
     }
   </tbody>
 </table>
-</div>
+</div>}
