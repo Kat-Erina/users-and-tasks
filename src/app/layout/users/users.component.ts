@@ -2,10 +2,11 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { User } from '../../core/models/models';
 import { Router } from '@angular/router';
+import { LoaderComponent } from "../../core/shared/loader/loader.component";
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [LoaderComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
@@ -17,14 +18,18 @@ usersData=signal<User[]>([]);
 originalUsers=signal<User[]>([]);
 destroyRef=inject(DestroyRef);
 errorMsg=signal<string|null>(null)
+isLoading=signal(true)
 
 
 loadUsersData(){
  let subs=this.apiService.getData<User[]>('users').subscribe({
     next:(respone)=>{this.usersData.set(respone);
       this.originalUsers.set(respone)
+      this.isLoading.set(false)
     }, 
-    error: ()=>this.errorMsg.set('Could not fetch Users')
+    error: ()=>{this.errorMsg.set('Could not fetch Users')
+      this.isLoading.set(false)
+    }
   })
 this.destroyRef.onDestroy(()=>{
   subs.unsubscribe()

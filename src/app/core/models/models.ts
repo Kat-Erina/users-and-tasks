@@ -36,10 +36,10 @@ export interface User{
     completed: boolean, 
   }
 
-  export interface CardData {
- userId: number,
-    id: number,
-    title: string,
-    completed?: boolean, 
-     body?: string, 
-  }
+export interface CardData {
+userId: number,
+id: number,
+title: string,
+completed?: boolean, 
+  body?: string, 
+}

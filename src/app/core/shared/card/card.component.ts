@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CardData, ToDo } from '../../models/models';
+import { CardData } from '../../models/models';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,8 +11,4 @@ import { CommonModule } from '@angular/common';
 export class CardComponent {
 @Input() data!:CardData
 
- isTodo(): boolean {
-    return 'completed' in this.data;
-    // Or with discriminant: return this.data.type === 'todo';
-  }
 }

@@ -1,3 +1,5 @@
+
+<app-loader [loading]="isLoading()"></app-loader>
 <h3>ToDo List</h3>
 <div class="cards-wrapper">
 @if(userTodossArray().length!==0){
@@ -5,7 +7,7 @@
  <app-card [data]="todo"></app-card>
     }
 }
- @else if (userTodossArray().length===0 && !errorMes()) {
+ @else if (!isLoading() && userTodossArray().length===0 && !errorMes()) {
     <p>User does not have any todos</p>
  }
  @else if(errorMes()){

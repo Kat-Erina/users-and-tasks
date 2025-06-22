@@ -1,5 +1,5 @@
   .card {
-  width: 220px; 
+  width: 100%; 
   background-color: #fcf5f5;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -21,4 +21,10 @@
 }
 .completed{
     background-color: rgb(95, 167, 95);
+}
+
+@media screen and (min-width:600px) {
+    .card{
+        width: 230px;
+    }
 }

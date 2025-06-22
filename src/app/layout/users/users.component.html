@@ -1,7 +1,9 @@
+<app-loader [loading]="isLoading()"></app-loader>
 <h1>მომხმარებლების სია</h1>
 @if(errorMsg()){
   <p>{{errorMsg()}}</p>
 }
+
 @else{
 <div class="filter-wrapper">
   <label for="filter">მომხმარებლის ძიება</label>
