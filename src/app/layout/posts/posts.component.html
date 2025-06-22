@@ -2,7 +2,7 @@
 
 <h1>პოსტების სია</h1>
 @if (stateService.popUpIsOpen()) {
-  <app-popup [postData]="stateService.selectedPost()"/>
+  <app-popup [postData]="selectedPost()"/>
 }
 @if(postsData()){
   <div class="table-wrapper">

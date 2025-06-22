@@ -13,16 +13,15 @@ export class HeaderComponent implements OnInit {
 day=signal(0)
 month=signal(0)
 year=signal(0)
-hour=signal('')
-minutes=signal('')
+hour=signal('00')
+minutes=signal('00')
 destroyRef=inject(DestroyRef)
 
 
 ngOnInit(): void {
 
 this.updateTime();
- 
-    interval(60000)
+    interval(60 - new Date().getSeconds()* 1000)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateTime());
   }
@@ -30,7 +29,7 @@ this.updateTime();
    updateTime(): void {
 const now = new Date();
 this.day.set(now.getDate())
-this.month.set(now.getMonth())
+this.month.set(now.getMonth()+1)
 this.year.set(now.getFullYear())
 this.hour.set(now.getHours().toString().padStart(2, '0'))
 this.minutes.set(now.getMinutes().toString().padStart(2, '0'))

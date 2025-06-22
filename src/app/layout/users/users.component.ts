@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component,  inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { User } from '../../core/models/models';
 import { Router } from '@angular/router';
@@ -16,13 +16,12 @@ apiService=inject(ApiService);
 router=inject(Router)
 usersData=signal<User[]>([]);
 originalUsers=signal<User[]>([]);
-destroyRef=inject(DestroyRef);
 errorMsg=signal<string|null>(null)
 isLoading=signal(true)
 
 
 loadUsersData(){
- let subs=this.apiService.getData<User[]>('users').subscribe({
+ this.apiService.getData<User[]>('users').subscribe({
     next:(respone)=>{this.usersData.set(respone);
       this.originalUsers.set(respone)
       this.isLoading.set(false)
@@ -31,9 +30,7 @@ loadUsersData(){
       this.isLoading.set(false)
     }
   })
-this.destroyRef.onDestroy(()=>{
-  subs.unsubscribe()
-})
+
 }
 
 ngOnInit(): void {

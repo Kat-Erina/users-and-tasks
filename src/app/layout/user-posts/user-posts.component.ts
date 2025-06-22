@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component,  inject, OnInit, signal } from '@angular/core';
 import { Post } from '../../core/models/models';
 import { ApiService } from '../../core/services/api.service';
 import { CardComponent } from '../../core/shared/card/card.component';
@@ -15,12 +15,11 @@ export class UserPostsComponent implements OnInit{
 apiService=inject(ApiService);
 posts=signal<Post[]>([])
 userPostsArray=signal<Post[]>([]);
-destroyRef=inject(DestroyRef);
 errorMes=signal<string|null>(null)
 isLoading=signal(true)
 
 loadUserPosts(){
-let sub=this.apiService.getData<Post[]>('posts').subscribe({
+this.apiService.getData<Post[]>('posts').subscribe({
     next:response=>{
     this.posts.set(response);
     this.isLoading.set(false)
@@ -36,9 +35,7 @@ this.userPostsArray.set(updatedData);
     }
   })
 
-  this.destroyRef.onDestroy(()=>{
-    sub.unsubscribe()
-  })
+
 }
 
 

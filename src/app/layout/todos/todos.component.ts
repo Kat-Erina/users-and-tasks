@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component,  inject, OnInit, signal } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { ToDo } from '../../core/models/models';
 import { CardComponent } from '../../core/shared/card/card.component';
@@ -15,12 +15,11 @@ export class TodosComponent implements OnInit {
 apiService=inject(ApiService);
 toDos=signal<ToDo[]>([])
 userTodossArray=signal<ToDo[]>([]);
-destroyRef=inject(DestroyRef);
 errorMes=signal<string|null>(null)
 isLoading=signal(true)
 
 loadUserTodos(){
- let subs=this.apiService.getData<ToDo[]>('todos').subscribe({
+ this.apiService.getData<ToDo[]>('todos').subscribe({
     next:response=>{
     this.toDos.set(response);
     this.isLoading.set(false)
@@ -35,9 +34,7 @@ this.userTodossArray.set(updatedData);
     }
   })
 
-  this.destroyRef.onDestroy(()=>{
-    subs.unsubscribe()
-  })
+  
 }
 
 ngOnInit(): void {
