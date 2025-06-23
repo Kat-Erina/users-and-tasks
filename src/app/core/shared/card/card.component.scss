@@ -1,5 +1,6 @@
-  .card {
-  width: 100%; 
+.card {
+  width: 100%;
+  min-height: 100px;
   background-color: #fcf5f5;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -7,7 +8,8 @@
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: none;
-  .card-title{
+  text-align: center;
+  .card-title {
     font-size: 16px;
     font-weight: bold;
     font-style: italic;
@@ -15,16 +17,18 @@
   }
 }
 
-.card:hover{
-     transform: scale(1.05);         
-  box-shadow: 0 8px 15px rgba(0,0,0,0.3); 
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
-.completed{
-    background-color: rgb(95, 167, 95);
+.completed {
+  background-color: rgb(95, 167, 95);
 }
 
-@media screen and (min-width:600px) {
-    .card{
-        width: 230px;
-    }
+@media screen and (min-width: 600px) {
+  .card {
+    width: 230px;
+    min-height: 100px;
+    max-height: 260px;
+  }
 }

@@ -1,38 +1,53 @@
 <app-loader [loading]="isLoading()"></app-loader>
 <h1>მომხმარებლების სია</h1>
 @if(errorMsg()){
-  <p>{{errorMsg()}}</p>
-}
-
-@else{
+<p>{{ errorMsg() }}</p>
+} @else{
 <div class="filter-wrapper">
   <label for="filter">მომხმარებლის ძიება</label>
-  <input id="filter" (input)="applyFilteres($event)" type="text" placeholder="სახელი,გვარი ან მეილი" />
+  <input
+    id="filter"
+    (input)="applyFilteres($event)"
+    type="text"
+    placeholder="სახელი,გვარი ან მეილი"
+  />
 </div>
 
 <div class="table-wrapper">
-  <table  cellspacing="0" cellpadding="8">
-  <thead>
-    <tr>
-      <th>სახელი</th>
-      <th>გვარი</th>
-      <th>ტელეფონის ნომერი</th>
-      <th>მეილი</th>
-      <th>კომპანიის სახელი</th>
-    </tr>
-  </thead>
-  <tbody>
-   @for (user of usersData(); track user.id) {
+  <table cellspacing="0" cellpadding="8">
+    <thead>
       <tr>
-        <td>{{ user.name.split(' ')[0] }}</td>
-        <td>{{ user.name.split(' ')[1] }}</td>
-        <td>{{user.phone}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.company.name}}</td>
-        <td class="posts"><button (click)="navigateToUsersData(user.id, '/user-posts')">პოსტები</button></td>
-        <td class="todos"><button style="width: 70px;" (click)="navigateToUsersData(user.id, '/user-todos')">To Dos</button></td>
+        <th>სახელი</th>
+        <th>გვარი</th>
+        <th>ტელეფონის ნომერი</th>
+        <th>მეილი</th>
+        <th>კომპანიის სახელი</th>
       </tr>
-    }
-  </tbody>
-</table>
-</div>}
+    </thead>
+    <tbody>
+      @for (user of usersData(); track user.id) {
+      <tr>
+        <td>{{ user.name.split(" ")[0] }}</td>
+        <td>{{ user.name.split(" ")[1] }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.company.name }}</td>
+        <td class="posts">
+          <button (click)="navigateToUsersData(user.id, `posts`)">
+            პოსტები
+          </button>
+        </td>
+        <td class="todos">
+          <button
+            style="width: 70px"
+            (click)="navigateToUsersData(user.id, 'todos')"
+          >
+            To Dos
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+}

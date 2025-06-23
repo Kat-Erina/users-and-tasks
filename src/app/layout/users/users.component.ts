@@ -39,8 +39,7 @@ ngOnInit(): void {
 
 
 navigateToUsersData(userId:number, route:string){
-  localStorage.setItem('userId', JSON.stringify(userId) )
-  this.router.navigate([route])
+  this.router.navigate(['/user',userId,route])
 }
 
 applyFilteres(event:Event){

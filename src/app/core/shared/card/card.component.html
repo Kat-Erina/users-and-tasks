@@ -1,9 +1,8 @@
 <section class="card" [class.completed]="data.completed">
-    <p class="card-title">{{data.title}}</p>
-  @if(data.body) {<p class="card-body"> {{ data.body }}</p>} 
-  @if(!data.body){<p class="card-body">Completed: {{ data.completed }}</p>}
+  <p class="card-title">{{ data.title }}</p>
+  @if(data.body) {
+  <p class="card-body">{{ data.body }}</p>
+  } @if(!data.body){
+  <p class="card-body">Completed: {{ data.completed }}</p>
+  }
 </section>
-
-
-
-

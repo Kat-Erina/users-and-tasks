@@ -6,9 +6,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-card',
   imports: [CommonModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
-@Input() data!:CardData
-
+  @Input() data!: CardData;
 }

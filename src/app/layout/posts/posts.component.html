@@ -2,33 +2,29 @@
 
 <h1>პოსტების სია</h1>
 @if (stateService.popUpIsOpen()) {
-  <app-popup [postData]="selectedPost()"/>
-}
-@if(postsData()){
-  <div class="table-wrapper">
-  <table  cellspacing="0" cellpadding="8">
-  <thead>
-    <tr>
-      <th>მომხმარებლის სახელი</th>
-      <th>პოსტის სათაური</th>
-    </tr>
-  </thead>
-  <tbody>
-   @for (post of postsArrayWithUserName(); track post.id) {
+<app-popup [postData]="selectedPost()" />
+} @if(postsData()){
+<div class="table-wrapper">
+  <table cellspacing="0" cellpadding="8">
+    <thead>
+      <tr>
+        <th>მომხმარებლის სახელი</th>
+        <th>პოსტის სათაური</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (post of postsArrayWithUserName(); track post.id) {
       <tr>
         <td>{{ post.username }}</td>
-        <td>{{ post.title}}</td>
+        <td>{{ post.title }}</td>
         <td><button (click)="displayFullInfo(post.id)">დეტალურად</button></td>
       </tr>
-    }
-  </tbody>
-</table>
+      }
+    </tbody>
+  </table>
 </div>
+} @if(!isLoading() && !errorMsg() && postsData().length===0){
+<p>მომხმარებელს არ აქვს პოსტები</p>
+} @if(errorMsg()){
+<p>{{ errorMsg() }}</p>
 }
-@if(!isLoading() && !errorMsg() && postsData().length===0){
-  <p>მომხმარებელს არ აქვს პოსტები</p>
-}
-@if(errorMsg()){
-  <p>{{errorMsg()}}</p>
-}
-

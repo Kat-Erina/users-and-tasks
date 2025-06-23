@@ -1,13 +1,18 @@
 <header>
-    <div class="nav-container">
-        <a routerLink="/">Users Board</a>
-        <nav>
-            <a routerLink="/users">Users</a>
-            <a routerLink="/posts">Posts</a>
-        </nav>
-    </div>
-    <div class="date-container">
-        <p class="date"><i class="fa-solid fa-calendar-days"></i>{{day()}}/{{month()}}/{{year()}}</p>
-        <p class="time"><i class="fa-solid fa-clock"></i> {{hour()}}:{{minutes()}}</p>
-    </div>
+  <div class="nav-container">
+    <a routerLink="/">Users Board</a>
+    <nav>
+      <a routerLink="/users">Users</a>
+      <a routerLink="/posts">Posts</a>
+    </nav>
+  </div>
+  <div class="date-container">
+    <p class="date">
+      <i class="fa-solid fa-calendar-days"></i
+      >{{ currentDate() | date : "dd/MM/yyyy" }}
+    </p>
+    <p class="time">
+      <i class="fa-solid fa-clock"></i>{{ currentDate() | date : "HH:mm" }}
+    </p>
+  </div>
 </header>
