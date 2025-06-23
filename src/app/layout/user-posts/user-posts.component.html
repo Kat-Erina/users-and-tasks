@@ -4,7 +4,7 @@
 <div class="cards-wrapper">
   @if(userPostsArray().length!==0){ @for(post of userPostsArray(); track
   post.id){
-  <app-card [data]="post"></app-card>
+  <app-card [data]="post" [height]="'255px'"></app-card>
   }} @else if (!isLoading()&& userPostsArray().length===0 && !errorMes()) {
   <p>User does not have any Posts</p>
   } @else {

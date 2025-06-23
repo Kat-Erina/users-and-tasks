@@ -3,7 +3,7 @@
 <div class="cards-wrapper">
   @if(userTodossArray().length!==0){ @for(todo of userTodossArray(); track
   todo.id){
-  <app-card [data]="todo"></app-card>
+  <app-card [data]="todo" [height]="'110px'"></app-card>
   } } @else if (!isLoading() && userTodossArray().length===0 && !errorMes()) {
   <p>User does not have any todos</p>
   } @else if(errorMes()){

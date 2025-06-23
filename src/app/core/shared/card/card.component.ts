@@ -10,4 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class CardComponent {
   @Input() data!: CardData;
+  @Input() height!:string
 }
